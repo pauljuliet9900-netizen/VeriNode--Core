@@ -16,6 +16,13 @@ pub mod slashing_core;
 pub mod attestation;
 pub mod crypto;
 
+// Validator lifecycle and state transition.
+// `validator` provides a deterministic exit queue ordered strictly by
+// (exit_epoch, validator_index); `state` drains it during the epoch
+// transition so exit processing is reproducible across clients.
+pub mod state;
+pub mod validator;
+
 // --- ERROR CODES ---
 
 #[contracterror]
