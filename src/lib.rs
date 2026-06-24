@@ -1,5 +1,9 @@
 #![cfg_attr(target_family = "wasm", no_std)]
 extern crate alloc;
+pub mod reputation;
+pub mod network;
+pub mod slashing;
+pub mod attestation_core;
 use soroban_sdk::{
     contract, contractclient, contracterror, contractimpl, contracttype, token,
     Address, Env, String, Vec,
