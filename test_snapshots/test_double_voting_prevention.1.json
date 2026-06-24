@@ -20,11 +20,11 @@
                 {
                   "i128": {
                     "hi": 0,
-                    "lo": 1000000
+                    "lo": 100000
                   }
                 },
                 {
-                  "u32": 5
+                  "u32": 15
                 },
                 {
                   "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMDR4"
@@ -104,7 +104,7 @@
           "function": {
             "contract_fn": {
               "contract_address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD2KM",
-              "function_name": "request_leniency",
+              "function_name": "create_proposal",
               "args": [
                 {
                   "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4"
@@ -113,7 +113,20 @@
                   "u64": 1
                 },
                 {
-                  "string": "Need extra time"
+                  "vec": [
+                    {
+                      "symbol": "ChangeLateFee"
+                    }
+                  ]
+                },
+                {
+                  "string": "Test proposal"
+                },
+                {
+                  "string": "Test description"
+                },
+                {
+                  "string": "{}"
                 }
               ]
             }
@@ -122,6 +135,7 @@
         }
       ]
     ],
+    [],
     [
       [
         "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM",
@@ -129,21 +143,21 @@
           "function": {
             "contract_fn": {
               "contract_address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD2KM",
-              "function_name": "vote_on_leniency",
+              "function_name": "quadratic_vote",
               "args": [
                 {
                   "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM"
                 },
                 {
-                  "u64": 1
+                  "u64": 2
                 },
                 {
-                  "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4"
+                  "u32": 5
                 },
                 {
                   "vec": [
                     {
-                      "symbol": "Approve"
+                      "symbol": "For"
                     }
                   ]
                 }
@@ -229,7 +243,7 @@
                               "val": {
                                 "i128": {
                                   "hi": 0,
-                                  "lo": 1000000
+                                  "lo": 100000
                                 }
                               }
                             },
@@ -283,9 +297,7 @@
                               "key": {
                                 "symbol": "grace_period_end"
                               },
-                              "val": {
-                                "u64": 259200
-                              }
+                              "val": "void"
                             },
                             {
                               "key": {
@@ -359,7 +371,7 @@
                                 "symbol": "max_members"
                               },
                               "val": {
-                                "u32": 5
+                                "u32": 15
                               }
                             },
                             {
@@ -383,7 +395,7 @@
                                 "symbol": "proposal_count"
                               },
                               "val": {
-                                "u64": 0
+                                "u64": 1
                               }
                             },
                             {
@@ -391,7 +403,7 @@
                                 "symbol": "quadratic_voting_enabled"
                               },
                               "val": {
-                                "bool": false
+                                "bool": true
                               }
                             },
                             {
@@ -417,7 +429,7 @@
                               "val": {
                                 "i128": {
                                   "hi": 0,
-                                  "lo": 5000000
+                                  "lo": 1500000
                                 }
                               }
                             }
@@ -455,10 +467,7 @@
                         "key": {
                           "vec": [
                             {
-                              "symbol": "LeniencyRequest"
-                            },
-                            {
-                              "u64": 1
+                              "symbol": "Member"
                             },
                             {
                               "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4"
@@ -469,10 +478,170 @@
                           "map": [
                             {
                               "key": {
-                                "symbol": "approve_votes"
+                                "symbol": "address"
+                              },
+                              "val": {
+                                "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4"
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "buddy"
+                              },
+                              "val": "void"
+                            },
+                            {
+                              "key": {
+                                "symbol": "contribution_count"
+                              },
+                              "val": {
+                                "u32": 0
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "index"
+                              },
+                              "val": {
+                                "u32": 0
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "last_contribution_time"
+                              },
+                              "val": {
+                                "u64": 0
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "referrer"
+                              },
+                              "val": "void"
+                            },
+                            {
+                              "key": {
+                                "symbol": "status"
+                              },
+                              "val": {
+                                "vec": [
+                                  {
+                                    "symbol": "Active"
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "tier_multiplier"
                               },
                               "val": {
                                 "u32": 1
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "key": {
+                          "vec": [
+                            {
+                              "symbol": "Member"
+                            },
+                            {
+                              "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM"
+                            }
+                          ]
+                        },
+                        "val": {
+                          "map": [
+                            {
+                              "key": {
+                                "symbol": "address"
+                              },
+                              "val": {
+                                "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM"
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "buddy"
+                              },
+                              "val": "void"
+                            },
+                            {
+                              "key": {
+                                "symbol": "contribution_count"
+                              },
+                              "val": {
+                                "u32": 0
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "index"
+                              },
+                              "val": {
+                                "u32": 1
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "last_contribution_time"
+                              },
+                              "val": {
+                                "u64": 0
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "referrer"
+                              },
+                              "val": "void"
+                            },
+                            {
+                              "key": {
+                                "symbol": "status"
+                              },
+                              "val": {
+                                "vec": [
+                                  {
+                                    "symbol": "Active"
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "tier_multiplier"
+                              },
+                              "val": {
+                                "u32": 1
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "key": {
+                          "vec": [
+                            {
+                              "symbol": "Proposal"
+                            },
+                            {
+                              "u64": 2
+                            }
+                          ]
+                        },
+                        "val": {
+                          "map": [
+                            {
+                              "key": {
+                                "symbol": "against_votes"
+                              },
+                              "val": {
+                                "u64": 0
                               }
                             },
                             {
@@ -485,31 +654,7 @@
                             },
                             {
                               "key": {
-                                "symbol": "extension_hours"
-                              },
-                              "val": {
-                                "u64": 48
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "reason"
-                              },
-                              "val": {
-                                "string": "Need extra time"
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "reject_votes"
-                              },
-                              "val": {
-                                "u32": 0
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "request_timestamp"
+                                "symbol": "created_timestamp"
                               },
                               "val": {
                                 "u64": 0
@@ -517,10 +662,62 @@
                             },
                             {
                               "key": {
-                                "symbol": "requester"
+                                "symbol": "description"
+                              },
+                              "val": {
+                                "string": "Test description"
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "execution_data"
+                              },
+                              "val": {
+                                "string": "{}"
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "for_votes"
+                              },
+                              "val": {
+                                "u64": 25
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "id"
+                              },
+                              "val": {
+                                "u64": 2
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "proposal_type"
+                              },
+                              "val": {
+                                "vec": [
+                                  {
+                                    "symbol": "ChangeLateFee"
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "proposer"
                               },
                               "val": {
                                 "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4"
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "quorum_met"
+                              },
+                              "val": {
+                                "bool": true
                               }
                             },
                             {
@@ -530,25 +727,41 @@
                               "val": {
                                 "vec": [
                                   {
-                                    "symbol": "Approved"
+                                    "symbol": "Active"
                                   }
                                 ]
                               }
                             },
                             {
                               "key": {
-                                "symbol": "total_votes_cast"
+                                "symbol": "title"
                               },
                               "val": {
-                                "u32": 1
+                                "string": "Test proposal"
                               }
                             },
                             {
                               "key": {
-                                "symbol": "voting_deadline"
+                                "symbol": "total_voting_power"
                               },
                               "val": {
-                                "u64": 86400
+                                "u64": 25
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "voting_end_timestamp"
+                              },
+                              "val": {
+                                "u64": 604800
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "voting_start_timestamp"
+                              },
+                              "val": {
+                                "u64": 0
                               }
                             }
                           ]
@@ -558,7 +771,7 @@
                         "key": {
                           "vec": [
                             {
-                              "symbol": "LeniencyStats"
+                              "symbol": "ProposalStats"
                             },
                             {
                               "u64": 1
@@ -569,10 +782,10 @@
                           "map": [
                             {
                               "key": {
-                                "symbol": "approved_requests"
+                                "symbol": "approved_proposals"
                               },
                               "val": {
-                                "u32": 1
+                                "u32": 0
                               }
                             },
                             {
@@ -580,107 +793,12 @@
                                 "symbol": "average_participation"
                               },
                               "val": {
-                                "u32": 1
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "expired_requests"
-                              },
-                              "val": {
                                 "u32": 0
                               }
                             },
                             {
                               "key": {
-                                "symbol": "rejected_requests"
-                              },
-                              "val": {
-                                "u32": 0
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "total_requests"
-                              },
-                              "val": {
-                                "u32": 1
-                              }
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "key": {
-                          "vec": [
-                            {
-                              "symbol": "LeniencyVotes"
-                            },
-                            {
-                              "u64": 1
-                            },
-                            {
-                              "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM"
-                            },
-                            {
-                              "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4"
-                            }
-                          ]
-                        },
-                        "val": {
-                          "vec": [
-                            {
-                              "symbol": "Approve"
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "key": {
-                          "vec": [
-                            {
-                              "symbol": "Member"
-                            },
-                            {
-                              "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4"
-                            }
-                          ]
-                        },
-                        "val": {
-                          "map": [
-                            {
-                              "key": {
-                                "symbol": "address"
-                              },
-                              "val": {
-                                "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4"
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "buddy"
-                              },
-                              "val": "void"
-                            },
-                            {
-                              "key": {
-                                "symbol": "contribution_count"
-                              },
-                              "val": {
-                                "u32": 0
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "index"
-                              },
-                              "val": {
-                                "u32": 0
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "last_contribution_time"
+                                "symbol": "average_voting_time"
                               },
                               "val": {
                                 "u64": 0
@@ -688,25 +806,23 @@
                             },
                             {
                               "key": {
-                                "symbol": "referrer"
-                              },
-                              "val": "void"
-                            },
-                            {
-                              "key": {
-                                "symbol": "status"
+                                "symbol": "executed_proposals"
                               },
                               "val": {
-                                "vec": [
-                                  {
-                                    "symbol": "Active"
-                                  }
-                                ]
+                                "u32": 0
                               }
                             },
                             {
                               "key": {
-                                "symbol": "tier_multiplier"
+                                "symbol": "rejected_proposals"
+                              },
+                              "val": {
+                                "u32": 0
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "total_proposals"
                               },
                               "val": {
                                 "u32": 1
@@ -719,7 +835,10 @@
                         "key": {
                           "vec": [
                             {
-                              "symbol": "Member"
+                              "symbol": "QuadraticVote"
+                            },
+                            {
+                              "u64": 2
                             },
                             {
                               "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM"
@@ -730,7 +849,43 @@
                           "map": [
                             {
                               "key": {
-                                "symbol": "address"
+                                "symbol": "proposal_id"
+                              },
+                              "val": {
+                                "u64": 2
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "timestamp"
+                              },
+                              "val": {
+                                "u64": 0
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "vote_choice"
+                              },
+                              "val": {
+                                "vec": [
+                                  {
+                                    "symbol": "For"
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "vote_weight"
+                              },
+                              "val": {
+                                "u32": 5
+                              }
+                            },
+                            {
+                              "key": {
+                                "symbol": "voter"
                               },
                               "val": {
                                 "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM"
@@ -738,58 +893,10 @@
                             },
                             {
                               "key": {
-                                "symbol": "buddy"
-                              },
-                              "val": "void"
-                            },
-                            {
-                              "key": {
-                                "symbol": "contribution_count"
+                                "symbol": "voting_power_used"
                               },
                               "val": {
-                                "u32": 0
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "index"
-                              },
-                              "val": {
-                                "u32": 1
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "last_contribution_time"
-                              },
-                              "val": {
-                                "u64": 0
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "referrer"
-                              },
-                              "val": "void"
-                            },
-                            {
-                              "key": {
-                                "symbol": "status"
-                              },
-                              "val": {
-                                "vec": [
-                                  {
-                                    "symbol": "Active"
-                                  }
-                                ]
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "tier_multiplier"
-                              },
-                              "val": {
-                                "u32": 1
+                                "u64": 25
                               }
                             }
                           ]
@@ -799,74 +906,7 @@
                         "key": {
                           "vec": [
                             {
-                              "symbol": "SocialCapital"
-                            },
-                            {
-                              "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4"
-                            },
-                            {
-                              "u64": 1
-                            }
-                          ]
-                        },
-                        "val": {
-                          "map": [
-                            {
-                              "key": {
-                                "symbol": "circle_id"
-                              },
-                              "val": {
-                                "u64": 1
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "leniency_given"
-                              },
-                              "val": {
-                                "u32": 0
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "leniency_received"
-                              },
-                              "val": {
-                                "u32": 1
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "member"
-                              },
-                              "val": {
-                                "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4"
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "trust_score"
-                              },
-                              "val": {
-                                "u32": 55
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "voting_participation"
-                              },
-                              "val": {
-                                "u32": 0
-                              }
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "key": {
-                          "vec": [
-                            {
-                              "symbol": "SocialCapital"
+                              "symbol": "VotingPower"
                             },
                             {
                               "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM"
@@ -888,18 +928,10 @@
                             },
                             {
                               "key": {
-                                "symbol": "leniency_given"
+                                "symbol": "last_updated"
                               },
                               "val": {
-                                "u32": 1
-                              }
-                            },
-                            {
-                              "key": {
-                                "symbol": "leniency_received"
-                              },
-                              "val": {
-                                "u32": 0
+                                "u64": 0
                               }
                             },
                             {
@@ -912,18 +944,21 @@
                             },
                             {
                               "key": {
-                                "symbol": "trust_score"
+                                "symbol": "quadratic_power"
                               },
                               "val": {
-                                "u32": 52
+                                "u64": 100000
                               }
                             },
                             {
                               "key": {
-                                "symbol": "voting_participation"
+                                "symbol": "token_balance"
                               },
                               "val": {
-                                "u32": 1
+                                "i128": {
+                                  "hi": 0,
+                                  "lo": 100000000
+                                }
                               }
                             }
                           ]
@@ -1233,11 +1268,11 @@
                 {
                   "i128": {
                     "hi": 0,
-                    "lo": 1000000
+                    "lo": 100000
                   }
                 },
                 {
-                  "u32": 5
+                  "u32": 15
                 },
                 {
                   "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMDR4"
@@ -1526,7 +1561,7 @@
                 "bytes": "0000000000000000000000000000000000000000000000000000000000000001"
               },
               {
-                "symbol": "request_leniency"
+                "symbol": "create_proposal"
               }
             ],
             "data": {
@@ -1538,7 +1573,20 @@
                   "u64": 1
                 },
                 {
-                  "string": "Need extra time"
+                  "vec": [
+                    {
+                      "symbol": "ChangeLateFee"
+                    }
+                  ]
+                },
+                {
+                  "string": "Test proposal"
+                },
+                {
+                  "string": "Test description"
+                },
+                {
+                  "string": "{}"
                 }
               ]
             }
@@ -1559,7 +1607,69 @@
                 "symbol": "fn_return"
               },
               {
-                "symbol": "request_leniency"
+                "symbol": "create_proposal"
+              }
+            ],
+            "data": {
+              "u64": 2
+            }
+          }
+        }
+      },
+      "failed_call": false
+    },
+    {
+      "event": {
+        "ext": "v0",
+        "contract_id": null,
+        "type_": "diagnostic",
+        "body": {
+          "v0": {
+            "topics": [
+              {
+                "symbol": "fn_call"
+              },
+              {
+                "bytes": "0000000000000000000000000000000000000000000000000000000000000001"
+              },
+              {
+                "symbol": "update_voting_power"
+              }
+            ],
+            "data": {
+              "vec": [
+                {
+                  "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM"
+                },
+                {
+                  "u64": 1
+                },
+                {
+                  "i128": {
+                    "hi": 0,
+                    "lo": 100000000
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "failed_call": false
+    },
+    {
+      "event": {
+        "ext": "v0",
+        "contract_id": "0000000000000000000000000000000000000000000000000000000000000001",
+        "type_": "diagnostic",
+        "body": {
+          "v0": {
+            "topics": [
+              {
+                "symbol": "fn_return"
+              },
+              {
+                "symbol": "update_voting_power"
               }
             ],
             "data": "void"
@@ -1583,7 +1693,7 @@
                 "bytes": "0000000000000000000000000000000000000000000000000000000000000001"
               },
               {
-                "symbol": "vote_on_leniency"
+                "symbol": "quadratic_vote"
               }
             ],
             "data": {
@@ -1592,15 +1702,15 @@
                   "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM"
                 },
                 {
-                  "u64": 1
+                  "u64": 2
                 },
                 {
-                  "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4"
+                  "u32": 5
                 },
                 {
                   "vec": [
                     {
-                      "symbol": "Approve"
+                      "symbol": "For"
                     }
                   ]
                 }
@@ -1623,7 +1733,7 @@
                 "symbol": "fn_return"
               },
               {
-                "symbol": "vote_on_leniency"
+                "symbol": "quadratic_vote"
               }
             ],
             "data": "void"
@@ -1647,7 +1757,7 @@
                 "bytes": "0000000000000000000000000000000000000000000000000000000000000001"
               },
               {
-                "symbol": "vote_on_leniency"
+                "symbol": "quadratic_vote"
               }
             ],
             "data": {
@@ -1656,15 +1766,15 @@
                   "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM"
                 },
                 {
-                  "u64": 1
+                  "u64": 2
                 },
                 {
-                  "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4"
+                  "u32": 3
                 },
                 {
                   "vec": [
                     {
-                      "symbol": "Approve"
+                      "symbol": "Against"
                     }
                   ]
                 }
@@ -1690,21 +1800,21 @@
             "data": {
               "vec": [
                 {
-                  "string": "caught panic 'Voting period has ended' from contract function 'Symbol(obj#859)'"
+                  "string": "caught panic 'Already voted on this proposal' from contract function 'Symbol(obj#1035)'"
                 },
                 {
                   "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM"
                 },
                 {
-                  "u64": 1
+                  "u64": 2
                 },
                 {
-                  "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4"
+                  "u32": 3
                 },
                 {
                   "vec": [
                     {
-                      "symbol": "Approve"
+                      "symbol": "Against"
                     }
                   ]
                 }
@@ -1763,7 +1873,7 @@
                   "string": "contract call failed"
                 },
                 {
-                  "symbol": "vote_on_leniency"
+                  "symbol": "quadratic_vote"
                 },
                 {
                   "vec": [
@@ -1771,15 +1881,15 @@
                       "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM"
                     },
                     {
-                      "u64": 1
+                      "u64": 2
                     },
                     {
-                      "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4"
+                      "u32": 3
                     },
                     {
                       "vec": [
                         {
-                          "symbol": "Approve"
+                          "symbol": "Against"
                         }
                       ]
                     }

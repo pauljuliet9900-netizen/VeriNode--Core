@@ -1132,6 +1132,9 @@ impl SoroSusuTrait for SoroSusu {
                 
                 // Execute the proposal based on type
                 SoroSusu::execute_proposal_logic(&env, &proposal);
+                // The logic above marks the proposal as Executed in storage.
+                // We update our local copy so the subsequent set() persists it correctly.
+                proposal.status = ProposalStatus::Executed;
             } else {
                 proposal.status = ProposalStatus::Rejected;
             }
@@ -1153,7 +1156,10 @@ impl SoroSusuTrait for SoroSusu {
         match proposal.status {
             ProposalStatus::Approved => stats.approved_proposals += 1,
             ProposalStatus::Rejected => stats.rejected_proposals += 1,
-            ProposalStatus::Executed => stats.executed_proposals += 1,
+            ProposalStatus::Executed => {
+                stats.approved_proposals += 1;
+                stats.executed_proposals += 1;
+            },
             _ => {}
         }
 
