@@ -1,15 +1,15 @@
-#![no_std]
+#![cfg_attr(target_family = "wasm", no_std)]
 extern crate alloc;
-pub mod reputation;
-pub mod network;
-pub mod slashing;
-pub mod attestation_core;
 use soroban_sdk::{
     contract, contractclient, contracterror, contractimpl, contracttype, token,
     Address, Env, String, Vec,
 };
 
 pub mod slashing_core;
+pub mod slashing;
+pub mod network;
+pub mod reputation;
+pub mod attestation_core;
 // Cryptographic primitives and attestation signature verification.
 // `crypto` provides a dependency-free SHA-256, SSZ-style merkleization, and
 // domain separation; `attestation` computes domain-separated signing roots so
@@ -884,7 +884,7 @@ impl SoroSusuTrait for SoroSusu {
 
         // Check if voting should be finalized early (if majority reached)
         let total_possible_votes = (circle.member_count - 1) as u32; // Exclude requester
-        let votes_needed_for_majority = if total_possible_votes == 0 { 0 } else { ((total_possible_votes * SIMPLE_MAJORITY_THRESHOLD) + 99) / 100 };
+        let votes_needed_for_majority = (total_possible_votes * SIMPLE_MAJORITY_THRESHOLD + 99) / 100;
         
         if votes_needed_for_majority > 0 && request.approve_votes >= votes_needed_for_majority {
             request.status = LeniencyRequestStatus::Approved;
@@ -1094,7 +1094,7 @@ impl SoroSusuTrait for SoroSusu {
         // Check quorum
         let circle_key = DataKey::Circle(proposal.circle_id);
         let circle: CircleInfo = env.storage().instance().get(&circle_key).expect("Circle not found");
-        let required_quorum = (circle.member_count * QUADRATIC_QUORUM) / 100;
+        let required_quorum = (circle.member_count * QUADRATIC_QUORUM + 99) / 100;
         proposal.quorum_met = proposal.total_voting_power >= required_quorum as u64;
 
         env.storage().instance().set(&proposal_key, &proposal);
@@ -1124,6 +1124,26 @@ impl SoroSusuTrait for SoroSusu {
 
         // Calculate result and update stats
         let total_votes = proposal.for_votes + proposal.against_votes;
+        if total_votes == 0 {
+            proposal.status = ProposalStatus::Rejected;
+        } else {
+            let approval_percentage = (proposal.for_votes * 100) / total_votes;
+            if approval_percentage >= QUADRATIC_MAJORITY as u64 {
+                proposal.status = ProposalStatus::Approved;
+                
+                // Execute the proposal based on type
+                SoroSusu::execute_proposal_logic(&env, &proposal);
+                // The logic above marks the proposal as Executed in storage.
+                // We update our local copy so the subsequent set() persists it correctly.
+                proposal.status = ProposalStatus::Executed;
+            } else {
+                proposal.status = ProposalStatus::Rejected;
+            }
+        }
+
+        env.storage().instance().set(&proposal_key, &proposal);
+
+        // Update stats
         let stats_key = DataKey::ProposalStats(proposal.circle_id);
         let mut stats: ProposalStats = env.storage().instance().get(&stats_key).unwrap_or(ProposalStats {
             total_proposals: 0,
@@ -1134,20 +1154,14 @@ impl SoroSusuTrait for SoroSusu {
             average_voting_time: 0,
         });
 
-        if total_votes == 0 {
-            proposal.status = ProposalStatus::Rejected;
-            stats.rejected_proposals += 1;
-        } else {
-            let approval_percentage = (proposal.for_votes * 100) / total_votes;
-            if approval_percentage >= QUADRATIC_MAJORITY as u64 {
-                SoroSusu::execute_proposal_logic(&env, &proposal);
-                proposal.status = ProposalStatus::Executed;
+        match proposal.status {
+            ProposalStatus::Approved => stats.approved_proposals += 1,
+            ProposalStatus::Rejected => stats.rejected_proposals += 1,
+            ProposalStatus::Executed => {
                 stats.approved_proposals += 1;
                 stats.executed_proposals += 1;
-            } else {
-                proposal.status = ProposalStatus::Rejected;
-                stats.rejected_proposals += 1;
-            }
+            },
+            _ => {}
         }
 
         env.storage().instance().set(&proposal_key, &proposal);
@@ -1366,18 +1380,18 @@ impl SoroSusuTrait for SoroSusu {
 
 impl SoroSusu {
     fn finalize_leniency_vote_internal(env: &Env, circle_id: &u64, requester: &Address, request: &mut LeniencyRequest) {
-        let total_possible_votes = request.total_votes_cast;
-        let minimum_participation = (total_possible_votes * MINIMUM_VOTING_PARTICIPATION) / 100;
+        let circle_key = DataKey::Circle(*circle_id);
+        let mut circle: CircleInfo = env.storage().instance().get(&circle_key).expect("Circle not found");
         
-        let mut final_status = LeniencyRequestStatus::Rejected;
+        let total_possible_votes = (circle.member_count - 1) as u32; // Exclude requester
+        let minimum_participation = (total_possible_votes * MINIMUM_VOTING_PARTICIPATION + 99) / 100;
         
-        if request.total_votes_cast >= minimum_participation {
+        let mut final_status = LeniencyRequestStatus::Expired;
+        
+        if request.total_votes_cast > 0 && request.total_votes_cast >= minimum_participation {
             let approval_percentage = (request.approve_votes * 100) / request.total_votes_cast;
             if approval_percentage >= SIMPLE_MAJORITY_THRESHOLD {
                 final_status = LeniencyRequestStatus::Approved;
-                
-                let circle_key = DataKey::Circle(*circle_id);
-                let mut circle: CircleInfo = env.storage().instance().get(&circle_key).expect("Circle not found");
                 
                 let extension_seconds = request.extension_hours * 3600;
                 let grace_period_end = circle.deadline_timestamp + extension_seconds;
@@ -1397,6 +1411,8 @@ impl SoroSusu {
                 social_capital.leniency_received += 1;
                 social_capital.trust_score = (social_capital.trust_score + 5).min(100);
                 env.storage().instance().set(&social_capital_key, &social_capital);
+            } else {
+                final_status = LeniencyRequestStatus::Rejected;
             }
         }
         

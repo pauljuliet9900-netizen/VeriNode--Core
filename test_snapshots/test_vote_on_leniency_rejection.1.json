@@ -1472,6 +1472,38 @@
       ],
       [
         {
+          "contract_data": {
+            "contract": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATYON",
+            "key": "ledger_key_contract_instance",
+            "durability": "persistent"
+          }
+        },
+        [
+          {
+            "last_modified_ledger_seq": 0,
+            "data": {
+              "contract_data": {
+                "ext": "v0",
+                "contract": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATYON",
+                "key": "ledger_key_contract_instance",
+                "durability": "persistent",
+                "val": {
+                  "contract_instance": {
+                    "executable": {
+                      "wasm": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                    },
+                    "storage": null
+                  }
+                }
+              }
+            },
+            "ext": "v0"
+          },
+          4095
+        ]
+      ],
+      [
+        {
           "contract_code": {
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
           }
@@ -1691,68 +1723,19 @@
     {
       "event": {
         "ext": "v0",
-        "contract_id": "0000000000000000000000000000000000000000000000000000000000000001",
+        "contract_id": "0000000000000000000000000000000000000000000000000000000000000009",
         "type_": "diagnostic",
         "body": {
           "v0": {
             "topics": [
               {
-                "symbol": "error"
+                "symbol": "fn_return"
               },
               {
-                "error": {
-                  "storage": "missing_value"
-                }
+                "symbol": "mint"
               }
             ],
-            "data": {
-              "string": "trying to get non-existing value for contract instance"
-            }
-          }
-        }
-      },
-      "failed_call": false
-    },
-    {
-      "event": {
-        "ext": "v0",
-        "contract_id": "0000000000000000000000000000000000000000000000000000000000000001",
-        "type_": "diagnostic",
-        "body": {
-          "v0": {
-            "topics": [
-              {
-                "symbol": "error"
-              },
-              {
-                "error": {
-                  "storage": "missing_value"
-                }
-              }
-            ],
-            "data": {
-              "vec": [
-                {
-                  "string": "contract try_call failed"
-                },
-                {
-                  "symbol": "mint"
-                },
-                {
-                  "vec": [
-                    {
-                      "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4"
-                    },
-                    {
-                      "u128": {
-                        "hi": 1,
-                        "lo": 0
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
+            "data": "void"
           }
         }
       },
@@ -1855,68 +1838,19 @@
     {
       "event": {
         "ext": "v0",
-        "contract_id": "0000000000000000000000000000000000000000000000000000000000000001",
+        "contract_id": "0000000000000000000000000000000000000000000000000000000000000009",
         "type_": "diagnostic",
         "body": {
           "v0": {
             "topics": [
               {
-                "symbol": "error"
+                "symbol": "fn_return"
               },
               {
-                "error": {
-                  "storage": "missing_value"
-                }
+                "symbol": "mint"
               }
             ],
-            "data": {
-              "string": "trying to get non-existing value for contract instance"
-            }
-          }
-        }
-      },
-      "failed_call": false
-    },
-    {
-      "event": {
-        "ext": "v0",
-        "contract_id": "0000000000000000000000000000000000000000000000000000000000000001",
-        "type_": "diagnostic",
-        "body": {
-          "v0": {
-            "topics": [
-              {
-                "symbol": "error"
-              },
-              {
-                "error": {
-                  "storage": "missing_value"
-                }
-              }
-            ],
-            "data": {
-              "vec": [
-                {
-                  "string": "contract try_call failed"
-                },
-                {
-                  "symbol": "mint"
-                },
-                {
-                  "vec": [
-                    {
-                      "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM"
-                    },
-                    {
-                      "u128": {
-                        "hi": 1,
-                        "lo": 1
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
+            "data": "void"
           }
         }
       },
@@ -2019,68 +1953,19 @@
     {
       "event": {
         "ext": "v0",
-        "contract_id": "0000000000000000000000000000000000000000000000000000000000000001",
+        "contract_id": "0000000000000000000000000000000000000000000000000000000000000009",
         "type_": "diagnostic",
         "body": {
           "v0": {
             "topics": [
               {
-                "symbol": "error"
+                "symbol": "fn_return"
               },
               {
-                "error": {
-                  "storage": "missing_value"
-                }
+                "symbol": "mint"
               }
             ],
-            "data": {
-              "string": "trying to get non-existing value for contract instance"
-            }
-          }
-        }
-      },
-      "failed_call": false
-    },
-    {
-      "event": {
-        "ext": "v0",
-        "contract_id": "0000000000000000000000000000000000000000000000000000000000000001",
-        "type_": "diagnostic",
-        "body": {
-          "v0": {
-            "topics": [
-              {
-                "symbol": "error"
-              },
-              {
-                "error": {
-                  "storage": "missing_value"
-                }
-              }
-            ],
-            "data": {
-              "vec": [
-                {
-                  "string": "contract try_call failed"
-                },
-                {
-                  "symbol": "mint"
-                },
-                {
-                  "vec": [
-                    {
-                      "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMDR4"
-                    },
-                    {
-                      "u128": {
-                        "hi": 1,
-                        "lo": 2
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
+            "data": "void"
           }
         }
       },
@@ -2183,68 +2068,19 @@
     {
       "event": {
         "ext": "v0",
-        "contract_id": "0000000000000000000000000000000000000000000000000000000000000001",
+        "contract_id": "0000000000000000000000000000000000000000000000000000000000000009",
         "type_": "diagnostic",
         "body": {
           "v0": {
             "topics": [
               {
-                "symbol": "error"
+                "symbol": "fn_return"
               },
               {
-                "error": {
-                  "storage": "missing_value"
-                }
+                "symbol": "mint"
               }
             ],
-            "data": {
-              "string": "trying to get non-existing value for contract instance"
-            }
-          }
-        }
-      },
-      "failed_call": false
-    },
-    {
-      "event": {
-        "ext": "v0",
-        "contract_id": "0000000000000000000000000000000000000000000000000000000000000001",
-        "type_": "diagnostic",
-        "body": {
-          "v0": {
-            "topics": [
-              {
-                "symbol": "error"
-              },
-              {
-                "error": {
-                  "storage": "missing_value"
-                }
-              }
-            ],
-            "data": {
-              "vec": [
-                {
-                  "string": "contract try_call failed"
-                },
-                {
-                  "symbol": "mint"
-                },
-                {
-                  "vec": [
-                    {
-                      "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOLZM"
-                    },
-                    {
-                      "u128": {
-                        "hi": 1,
-                        "lo": 3
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
+            "data": "void"
           }
         }
       },

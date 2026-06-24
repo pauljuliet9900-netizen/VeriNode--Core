@@ -20,7 +20,7 @@
                 {
                   "i128": {
                     "hi": 0,
-                    "lo": 500000
+                    "lo": 100000
                   }
                 },
                 {
@@ -244,7 +244,7 @@
                               "val": {
                                 "i128": {
                                   "hi": 0,
-                                  "lo": 500000
+                                  "lo": 100000
                                 }
                               }
                             },
@@ -430,7 +430,7 @@
                               "val": {
                                 "i128": {
                                   "hi": 0,
-                                  "lo": 7500000
+                                  "lo": 1500000
                                 }
                               }
                             }
@@ -948,7 +948,7 @@
                                 "symbol": "quadratic_power"
                               },
                               "val": {
-                                "u64": 50
+                                "u64": 25
                               }
                             },
                             {
@@ -958,7 +958,7 @@
                               "val": {
                                 "i128": {
                                   "hi": 0,
-                                  "lo": 50000
+                                  "lo": 25000
                                 }
                               }
                             }
@@ -1142,6 +1142,38 @@
       ],
       [
         {
+          "contract_data": {
+            "contract": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOLZM",
+            "key": "ledger_key_contract_instance",
+            "durability": "persistent"
+          }
+        },
+        [
+          {
+            "last_modified_ledger_seq": 0,
+            "data": {
+              "contract_data": {
+                "ext": "v0",
+                "contract": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOLZM",
+                "key": "ledger_key_contract_instance",
+                "durability": "persistent",
+                "val": {
+                  "contract_instance": {
+                    "executable": {
+                      "wasm": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                    },
+                    "storage": null
+                  }
+                }
+              }
+            },
+            "ext": "v0"
+          },
+          4095
+        ]
+      ],
+      [
+        {
           "contract_code": {
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
           }
@@ -1237,7 +1269,7 @@
                 {
                   "i128": {
                     "hi": 0,
-                    "lo": 500000
+                    "lo": 100000
                   }
                 },
                 {
@@ -1361,68 +1393,19 @@
     {
       "event": {
         "ext": "v0",
-        "contract_id": "0000000000000000000000000000000000000000000000000000000000000001",
+        "contract_id": "0000000000000000000000000000000000000000000000000000000000000007",
         "type_": "diagnostic",
         "body": {
           "v0": {
             "topics": [
               {
-                "symbol": "error"
+                "symbol": "fn_return"
               },
               {
-                "error": {
-                  "storage": "missing_value"
-                }
+                "symbol": "mint"
               }
             ],
-            "data": {
-              "string": "trying to get non-existing value for contract instance"
-            }
-          }
-        }
-      },
-      "failed_call": false
-    },
-    {
-      "event": {
-        "ext": "v0",
-        "contract_id": "0000000000000000000000000000000000000000000000000000000000000001",
-        "type_": "diagnostic",
-        "body": {
-          "v0": {
-            "topics": [
-              {
-                "symbol": "error"
-              },
-              {
-                "error": {
-                  "storage": "missing_value"
-                }
-              }
-            ],
-            "data": {
-              "vec": [
-                {
-                  "string": "contract try_call failed"
-                },
-                {
-                  "symbol": "mint"
-                },
-                {
-                  "vec": [
-                    {
-                      "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4"
-                    },
-                    {
-                      "u128": {
-                        "hi": 1,
-                        "lo": 0
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
+            "data": "void"
           }
         }
       },
@@ -1525,68 +1508,19 @@
     {
       "event": {
         "ext": "v0",
-        "contract_id": "0000000000000000000000000000000000000000000000000000000000000001",
+        "contract_id": "0000000000000000000000000000000000000000000000000000000000000007",
         "type_": "diagnostic",
         "body": {
           "v0": {
             "topics": [
               {
-                "symbol": "error"
+                "symbol": "fn_return"
               },
               {
-                "error": {
-                  "storage": "missing_value"
-                }
+                "symbol": "mint"
               }
             ],
-            "data": {
-              "string": "trying to get non-existing value for contract instance"
-            }
-          }
-        }
-      },
-      "failed_call": false
-    },
-    {
-      "event": {
-        "ext": "v0",
-        "contract_id": "0000000000000000000000000000000000000000000000000000000000000001",
-        "type_": "diagnostic",
-        "body": {
-          "v0": {
-            "topics": [
-              {
-                "symbol": "error"
-              },
-              {
-                "error": {
-                  "storage": "missing_value"
-                }
-              }
-            ],
-            "data": {
-              "vec": [
-                {
-                  "string": "contract try_call failed"
-                },
-                {
-                  "symbol": "mint"
-                },
-                {
-                  "vec": [
-                    {
-                      "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM"
-                    },
-                    {
-                      "u128": {
-                        "hi": 1,
-                        "lo": 1
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
+            "data": "void"
           }
         }
       },
@@ -1714,7 +1648,7 @@
                 {
                   "i128": {
                     "hi": 0,
-                    "lo": 50000
+                    "lo": 25000
                   }
                 }
               ]
@@ -1803,7 +1737,7 @@
             "data": {
               "vec": [
                 {
-                  "string": "caught panic 'Insufficient voting power' from contract function 'Symbol(obj#795)'"
+                  "string": "caught panic 'Insufficient voting power' from contract function 'Symbol(obj#801)'"
                 },
                 {
                   "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM"
