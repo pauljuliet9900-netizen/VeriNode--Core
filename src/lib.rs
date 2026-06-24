@@ -864,7 +864,7 @@ impl SoroSusuTrait for SoroSusu {
 
         // Check if voting should be finalized early (if majority reached)
         let total_possible_votes = (circle.member_count - 1) as u32; // Exclude requester
-        let votes_needed_for_majority = ((total_possible_votes * SIMPLE_MAJORITY_THRESHOLD) + 99) / 100;
+        let votes_needed_for_majority = if total_possible_votes == 0 { 0 } else { ((total_possible_votes * SIMPLE_MAJORITY_THRESHOLD) + 99) / 100 };
         
         if votes_needed_for_majority > 0 && request.approve_votes >= votes_needed_for_majority {
             request.status = LeniencyRequestStatus::Approved;
