@@ -1,10 +1,5 @@
 #![cfg_attr(target_family = "wasm", no_std)]
 extern crate alloc;
-
-#[cfg(target_family = "wasm")]
-#[global_allocator]
-static ALLOC: dlmalloc::GlobalDlmalloc = dlmalloc::GlobalDlmalloc;
-
 use soroban_sdk::{
     contract, contractclient, contracterror, contractimpl, contracttype, token,
     Address, Env, String, Vec,
