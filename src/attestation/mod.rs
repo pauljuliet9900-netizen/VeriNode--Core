@@ -2,4 +2,5 @@
 
 pub mod bitfield;
 pub mod bls_aggregator;
+pub mod inclusion_tracker;
 pub mod verifier;

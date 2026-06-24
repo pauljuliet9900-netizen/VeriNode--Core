@@ -15,6 +15,7 @@ pub mod slashing_core;
 // signatures cannot be replayed across consensus domains.
 pub mod attestation;
 pub mod crypto;
+pub mod consensus;
 
 // Validator lifecycle and state transition.
 // `validator` provides a deterministic exit queue ordered strictly by
